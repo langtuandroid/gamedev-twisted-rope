@@ -944,6 +944,8 @@ public class UltimateRope : MonoBehaviour
                 }
             }
         }
+        
+        BuildStaticMeshObject(out _);
     }
 
     public void DeleteRope(bool bResetNodePositions = false, bool bDestroySkin = true)
@@ -2587,11 +2589,11 @@ public class UltimateRope : MonoBehaviour
 
     public GameObject BuildStaticMeshObject(out string strStatusMessage)
     {
-        if(Application.isEditor && Application.isPlaying)
-        {
-            strStatusMessage = "Error: Rope can't be made static from the editor in play mode";
-            return null;
-        }
+        // if(Application.isEditor && Application.isPlaying)
+        // {
+        //     strStatusMessage = "Error: Rope can't be made static from the editor in play mode";
+        //     return null;
+        // }
 
         if(RopeType == ERopeType.Procedural)
         {
@@ -2607,7 +2609,7 @@ public class UltimateRope : MonoBehaviour
 
             // Get mesh asset file name first
 
-            string strMeshAssetPath = UnityEditor.EditorUtility.SaveFilePanelInProject("Save mesh asset", "mesh_" + gameObject.name + "_" + this.GetInstanceID().ToString() + ".asset", "asset", "Please enter a file name to save the mesh asset to");
+            // string strMeshAssetPath = UnityEditor.EditorUtility.SaveFilePanelInProject("Save mesh asset", "mesh_" + gameObject.name + "_" + this.GetInstanceID().ToString() + ".asset", "asset", "Please enter a file name to save the mesh asset to");
 
 #endif
 
@@ -2721,54 +2723,60 @@ public class UltimateRope : MonoBehaviour
                 }
             }
 
-#if UNITY_EDITOR
-            UnityEditor.Unwrapping.GenerateSecondaryUVSet(mesh);
-#endif
+// #if UNITY_EDITOR
+//             UnityEditor.Unwrapping.GenerateSecondaryUVSet(mesh);
+// #endif
 
             // Add filter, renderer and collider
 
-            GameObject newObject = new GameObject(gameObject.name + " (static)");
+            // GameObject newObject = new GameObject(gameObject.name + " (static)");
+            //
+            // newObject.transform.position = v3Center;
+            // newObject.transform.rotation = transform.rotation;
+            //
+            // MeshFilter   meshFilter   = newObject.AddComponent<MeshFilter>();
+            // MeshRenderer meshRenderer = newObject.AddComponent<MeshRenderer>();
+            // MeshCollider meshCollider2 = GetComponent<MeshCollider>();
 
-            newObject.transform.position = v3Center;
-            newObject.transform.rotation = transform.rotation;
+            // MeshCol.transform.position = v3Center;
+            // MeshCol.transform.rotation = transform.rotation;
+            // MeshCol.sharedMesh = mesh;
+            
+            // meshFilter.sharedMesh = mesh;
+            //
+            // Material[] ropeMaterials = new Material[2];
+            // ropeMaterials[0] = RopeMaterial;
+            // ropeMaterials[1] = RopeSectionMaterial;
+            // meshRenderer.sharedMaterials = ropeMaterials;
+            //
+            // newObject.isStatic = true;
+            //
+            // MeshCollider meshCollider = newObject.AddComponent<MeshCollider>();
+            // meshCollider.sharedMesh   = mesh;
+            // meshCollider.convex       = false;
+            // meshCollider.material     = RopePhysicsMaterial;
 
-            MeshFilter   meshFilter   = newObject.AddComponent<MeshFilter>();
-            MeshRenderer meshRenderer = newObject.AddComponent<MeshRenderer>();
+// #if UNITY_EDITOR
+//
+//             // Save mesh as asset
+//
+//             if(strMeshAssetPath.Length != 0)
+//             {
+//                 UnityEditor.AssetDatabase.CreateAsset(mesh, strMeshAssetPath);
+//                 UnityEditor.AssetDatabase.Refresh();
+//             }
+//
+// #endif
 
-            meshFilter.sharedMesh = mesh;
-
-            Material[] ropeMaterials = new Material[2];
-            ropeMaterials[0] = RopeMaterial;
-            ropeMaterials[1] = RopeSectionMaterial;
-            meshRenderer.sharedMaterials = ropeMaterials;
-
-            newObject.isStatic = true;
-
-            MeshCollider meshCollider = newObject.AddComponent<MeshCollider>();
-            meshCollider.sharedMesh   = mesh;
-            meshCollider.convex       = false;
-            meshCollider.material     = RopePhysicsMaterial;
-
-#if UNITY_EDITOR
-
-            // Save mesh as asset
-
-            if(strMeshAssetPath.Length != 0)
-            {
-                UnityEditor.AssetDatabase.CreateAsset(mesh, strMeshAssetPath);
-                UnityEditor.AssetDatabase.Refresh();
-            }
-
-#endif
-
-#if UNITY_3_5
-            gameObject.SetActiveRecursively(false);
-#else
-            gameObject.SetActive(false);
-#endif
+// #if UNITY_3_5
+//             gameObject.SetActiveRecursively(false);
+// #else
+//             gameObject.SetActive(false);
+// #endif
             strStatusMessage = "Rope converted succesfully";
 
-            return newObject;
+            return null;
+            // return newObject;
         }
         else if(RopeType == ERopeType.LinkedObjects)
         {

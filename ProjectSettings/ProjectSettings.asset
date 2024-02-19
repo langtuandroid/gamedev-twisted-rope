@@ -156,10 +156,11 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.guc.ropetangle
+    Android: com.noname.digital.gamedev.twistedrope
     Standalone: com.UnityTechnologies.com.unity.template-starter-kit
     iPhone: com.noname.digital.gamedev.twisted-rope
   buildNumber:
+    Bratwurst: 0
     Standalone: 0
     VisionOS: 0
     iPhone: 0
@@ -802,9 +803,10 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: gameanalytics_ironsource_enabled;USE_ADMOB;USE_ADMOB_PATCH
+    Android: gameanalytics_ironsource_enabled;USE_ADMOB;USE_ADMOB_PATCH;OBI_ONI_SUPPORTED
+    Standalone: OBI_ONI_SUPPORTED
     Windows Store Apps: 
-    iPhone: gameanalytics_ironsource_enabled;USE_ADMOB_PATCH
+    iPhone: gameanalytics_ironsource_enabled;USE_ADMOB_PATCH;OBI_ONI_SUPPORTED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

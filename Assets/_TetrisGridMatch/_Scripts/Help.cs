@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using _Twisted._Scripts.ControllerRelated;
 using UnityEngine;
 

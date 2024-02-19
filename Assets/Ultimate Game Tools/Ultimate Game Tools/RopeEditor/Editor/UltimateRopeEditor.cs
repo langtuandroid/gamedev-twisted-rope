@@ -774,6 +774,9 @@ public class UltimateRopeEditor : Editor
 
         if(bMakeStatic)
         {
+            rope.BuildStaticMeshObject(out _);
+            bMakeStatic = false;
+            return;
             if(Application.isPlaying)
             {
                 EditorUtility.DisplayDialog("Error", "Rope can't be made static from within the play mode, please use edit mode instead. Current rope state can be saved using the Persist After Playmode checkbox if needed.", "OK");
